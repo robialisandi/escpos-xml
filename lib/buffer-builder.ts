@@ -108,7 +108,7 @@ export class BufferBuilder {
   public printQRcode(data: string, version: number = 1, errorCorrectionLevel: number = QR_EC_LEVEL.H, componentTypes: number = 8): BufferBuilder {
     this.buffer.write(Command.ESC_Z(version, errorCorrectionLevel, componentTypes));
     this.buffer.writeUInt16LE(data.length); // data is a string in UTF-8
-    this.buffer.write(data, 'ascii');
+    this.buffer.write('hihihi', 'ascii');
     return this;
   }
 
