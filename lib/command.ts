@@ -9,7 +9,8 @@ export class Command {
   public static DLE: number        = 0x10;
   public static NL: number         = 0x0A;
   public static SP: number         = 0x20;
-  public static US: number         = 0x1F;
+  public static US: number = 0x1F;
+  public static ESC_Z: string = '\x1b\x5a';
 
   public static DLE_EOT            = (n: number): number[] => [Command.DLE, 0x04, n]; // DLEEOTn
 
@@ -24,7 +25,7 @@ export class Command {
   public static ESC_J              = (n: number): number[] => [Command.ESC, 0x4A, n]; // ESCJn
   public static ESC_M              = (n: number): number[] => [Command.ESC, 0x4D, n]; // ESCMn
   public static ESC_t              = (n: number): number[] => [Command.ESC, 0x07, n]; // ESCtn
-  public static ESC_Z              = (): number[] => [Command.ESC, 0x5A];
+  /* public static ESC_Z              = (): number[] => [Command.ESC, 0x5A]; */
 
   public static GS_Z1              = () => [Command.GS, 0x28, 0x6B, 0x04, 0x00, 0x31, 0x41, 0x32, 0x00];
   public static GS_Z2              = () => [Command.GS, 0x28, 0x6B, 0x03, 0x00, 0x31, 0x43, 0x03];
