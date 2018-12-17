@@ -18,4 +18,9 @@ export class EscPos {
     return new BufferBuilder();
   }
 
+  public static BufferFromTemplate(template: string, data: any): number[] {
+    let templateParser = new TemplateParser();
+    return templateParser.parser(template, data).build();
+  }
+
 }

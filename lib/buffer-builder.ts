@@ -93,7 +93,7 @@ export class BufferBuilder {
     this.buffer.write(Command.ESC_rev(0));
     return this;
   }
-/*
+
   public printBarcode(data: string, barcodeSystem: BARCODE_SYSTEM, width: BARCODE_WIDTH = BARCODE_WIDTH.DOT_375, height: number = 162, labelFont: BARCODE_LABEL_FONT = BARCODE_LABEL_FONT.FONT_A, labelPosition: BARCODE_LABEL_POSITION = BARCODE_LABEL_POSITION.BOTTOM, leftSpacing: number = 0): BufferBuilder {
     this.buffer.write(Command.GS_w(width)); // width
     this.buffer.write(Command.GS_h(height)); // height
@@ -111,7 +111,7 @@ export class BufferBuilder {
     this.buffer.write('hihihi', 'ascii');
     return this;
   }
- */
+
   public printBitmap(image: number[], width: number, height: number, scale: BITMAP_SCALE = BITMAP_SCALE.NORMAL): BufferBuilder {
     //TODO
     return this;
