@@ -120,12 +120,12 @@ export class BufferBuilder {
   // }
 
   public printQRcode(data: string, version: number = 3, level: QR_EC_LEVEL = QR_EC_LEVEL.H, size: number = 8): BufferBuilder {
-    this.buffer.write(Command.ESC_Z());
+    this.buffer.write(Command.ESC_Z);
     this.buffer.writeUInt8(version);
     this.buffer.writeUInt8(level);
     this.buffer.writeUInt8(size);
     this.buffer.writeUInt16LE(data.length);
-    this.buffer.write(data);
+    this.buffer.write(data, 'ascii');
     return this;
   }
 
