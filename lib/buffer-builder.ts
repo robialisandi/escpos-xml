@@ -106,7 +106,14 @@ export class BufferBuilder {
   }
 
   public printQRcode(data: string, version: number = 1, errorCorrectionLevel: number = QR_EC_LEVEL.H, componentTypes: number = 8): BufferBuilder {
-    this.buffer.write(Command.ESC_Z(version, errorCorrectionLevel, componentTypes));
+    const store_len = data.length + 3;
+    const store_pL = store_len % 256;
+    const store_pH = store_len / 256;
+    this.buffer.write(Command.GS_Z1());
+    this.buffer.write(Command.GS_Z2());
+    this.buffer.write(Command.GS_Z3());
+    this.buffer.write(Command.GS_Z4(store_pL, store_pH));
+    this.buffer.write(Command.GS_Z5());
     this.buffer.writeUInt16LE(data.length); // data is a string in UTF-8
     this.buffer.write(data, 'ascii');
     return this;
