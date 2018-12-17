@@ -113,8 +113,8 @@ export class BufferBuilder {
     this.buffer.write(Command.GS_Z2());
     this.buffer.write(Command.GS_Z3());
     this.buffer.write(Command.GS_Z4(store_pL, store_pH));
+    this.buffer.writeUInt16LE(data); // data is a string in UTF-8
     this.buffer.write(Command.GS_Z5());
-    this.buffer.writeUInt16LE(data.length); // data is a string in UTF-8
     this.buffer.write(data, 'ascii');
     return this;
   }
