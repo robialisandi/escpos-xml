@@ -24,7 +24,7 @@ export class Command {
   public static ESC_J              = (n: number): number[] => [Command.ESC, 0x4A, n]; // ESCJn
   public static ESC_M              = (n: number): number[] => [Command.ESC, 0x4D, n]; // ESCMn
   public static ESC_t              = (n: number): number[] => [Command.ESC, 0x07, n]; // ESCtn
-  public static ESC_Z              = (m: number, n: number, k: number): number[] => [Command.ESC, 0x5A, m, n, k]; // ESCZmnk
+  public static ESC_Z              = (m: number, n: number, k: number): number[] => [Command.GS, 0x28, 0x6B, 0x03, 0x00, 0x31, 0x51, 48]; // ESCZmnk
 
   public static FS_and: number[]   = [Command.FS, 0x40]; //ESC@
 
