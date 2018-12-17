@@ -105,17 +105,27 @@ export class BufferBuilder {
     return this;
   }
 
-  public printQRcode(data: string, version: number = 1, errorCorrectionLevel: number = QR_EC_LEVEL.H, componentTypes: number = 8): BufferBuilder {
-    const store_len = data.length + 3;
-    const store_pL = store_len % 256;
-    const store_pH = store_len / 256;
-    this.buffer.write(Command.GS_Z1());
-    this.buffer.write(Command.GS_Z2());
-    this.buffer.write(Command.GS_Z3());
-    this.buffer.write(Command.GS_Z4(store_pL, store_pH));
-    this.buffer.writeUInt16LE(data); // data is a string in UTF-8
-    this.buffer.write(Command.GS_Z5());
-    this.buffer.write(data, 'ascii');
+  // public printQRcode(data: string, version: number = 1, errorCorrectionLevel: QR_EC_LEVEL = QR_EC_LEVEL.H, componentTypes: number = 8): BufferBuilder {
+  //   const store_len = data.length + 3;
+  //   const store_pL = store_len % 256;
+  //   const store_pH = store_len / 256;
+  //   this.buffer.write(Command.GS_Z1());
+  //   this.buffer.write(Command.GS_Z2());
+  //   this.buffer.write(Command.GS_Z3(errorCorrectionLevel));
+  //   this.buffer.write(Command.GS_Z4(store_pL, store_pH));
+  //   this.buffer.writeUInt16LE(data); // data is a string in UTF-8
+  //   this.buffer.write(Command.GS_Z5());
+  //   this.buffer.write(data, 'ascii');
+  //   return this;
+  // }
+
+  public printQRcode(data: string, version: number = 3, level: QR_EC_LEVEL = QR_EC_LEVEL.H, size: number = 8): BufferBuilder {
+    this.buffer.write('\x1b\x5a');
+    this.buffer.writeUInt8(version);
+    this.buffer.writeUInt8(level);
+    this.buffer.writeUInt8(size);
+    this.buffer.writeUInt16LE(data.length);
+    this.buffer.write(data);
     return this;
   }
 
